@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Route, Switch} from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 import { HomeMain } from './index'
 import International from 'pages/international/International'
@@ -15,11 +15,55 @@ import FunClass from 'pages/funClass/FunClass'
 import ChangeForYou from 'pages/changeForYou/ChangeForYou'
 import Share from 'pages/share/Share'
 import Attitude from 'pages/attitude/Attitude'
+import Ted from 'pages/ted/Ted'
+import Nav from '@/Nav/Nav'
+import NavHead from '@/navHead'
+// import Ani from './Ani'
+
 
 class Layout extends Component{
+  state={
+    data:[],
+    isSticky : false
+  }
+
+  scroll = ()=>{
+    if(window.pageYOffset > 49){
+      this.setState({
+        isSticky : true
+      })
+    }
+    else{
+      this.setState({
+        isSticky : false
+      })
+    } 
+  }
+
+
   render(){
+    console.log(this.props)
+    let type
+    let path = this.props.location.pathname
+    if(path.indexOf('/excellentCourse') !== -1 || path.indexOf('/detail2') !== -1){
+      type = 1
+    }else if(path.indexOf('/detail') !== -1 ){
+      type = 2
+    }else{
+      type = 0
+    }
     return (
       <>
+        {/* <Ani></Ani> */}
+        {
+          type === 1? null : type === 2? <NavHead isSticky={this.state.isSticky}></NavHead>: type ? null
+          : <>
+            <NavHead isSticky={this.state.isSticky}></NavHead>
+            <Nav isSticky={this.state.isSticky}></Nav>
+          </>
+          
+          
+        }
         <Switch>
           <Route 
             exact
@@ -41,6 +85,10 @@ class Layout extends Component{
           <Route
             path="/Inland"
             component={Inland}
+          />
+          <Route
+            path="/Ted"
+            component={Ted}
           />
           <Route
             path="/speach"
@@ -80,4 +128,4 @@ class Layout extends Component{
   }
 }
 
-export default Layout
+export default withRouter(Layout)

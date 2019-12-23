@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { ListWrap  } from 'styles/CommonList'
+import { ListWrap, ItemWrap  } from 'styles/CommonList'
 import { get } from 'utils/http'
 import { formatView } from 'utils/myFuns'
 import { NavLink } from 'react-router-dom'
 import BScroll from 'better-scroll'
 import _ from 'lodash'
+import no_find from 'assets/images/no_find.jpg'
 
 
 class CommonList extends Component{
@@ -18,7 +19,8 @@ class CommonList extends Component{
       '/funClass' : { id : 6, type : 4 },
       '/changeForYou' : { id : 1, type : 4 },
       '/share' : { id : 8, type : 4 },
-      '/attitude' : { id : 9, type : 4 }
+      '/attitude' : { id : 9, type : 4 },
+      '/ted' : { id : 4, type : 5}
     },
     list:[],
     count:0,
@@ -78,11 +80,11 @@ class CommonList extends Component{
             </div>
             :this.state.list.map(value =>{
               return(
-                <li className="list-item" key={value.plid + _.random(0,999999)}>
+                <ItemWrap className="list-item" key={value.plid + _.random(0,999999)} width="0 0 1px 0">
                   {
                     this.type === 4
                     ?<a href={value.pageUrl}>  
-                      <img src={value.picUrl} alt="" className="img-box" />
+                      <img src={value.picUrl ? value.picUrl : no_find} alt="此处无图" className="img-box" />
                       <div>
                       <h3>{value.title}</h3>
                         <p>
@@ -102,13 +104,13 @@ class CommonList extends Component{
                   >
                     <div className="img-box">
                       <div className="img-wrap wrap-top">
-                        <img src={value.picUrl} alt=""/>
+                        <img src={value.picUrl ? value.picUrl : no_find} alt="此处无图"/>
                       </div>
                       <div className="img-wrap wrap-m">
-                        <img src={value.picUrl} alt=""/>
+                        <img src={value.picUrl ? value.picUrl : no_find} alt="此处无图"/>
                       </div>
                       <div className="img-wrap wrap-b">
-                        <img src={value.picUrl} alt=""/>
+                        <img src={value.picUrl ? value.picUrl : no_find} alt="此处无图"/>
                       </div>
                     </div>
                     <div>
@@ -119,7 +121,7 @@ class CommonList extends Component{
                       </p>
                     </div>
                   </NavLink> }                
-                </li>
+                </ItemWrap>
               )
             })
           }

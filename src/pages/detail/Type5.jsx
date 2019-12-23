@@ -1,16 +1,16 @@
 import React from 'react'
 import Poster from '@/Poster'
 import { formatPlayTime, formatView } from 'utils/myFuns'
-import { ContainerWrap, DownLoadWrap, CallAppWrap, ContentWrap, SeeAllWrap} from 'styles/detail'
+import { ContainerWrap, DownLoadWrap, CallAppWrap, ContentWrap, SeeAllWrap, InfoWrap} from 'styles/detail'
 import { Player } from 'video-react';
-import v from 'assets/1.mp4'
+// import v from 'assets/1.mp4'
 
 const Type5 = function(props){
   const ref = React.createRef()
   return(
     <div>
-        <Player ref={ref}>
-          <source src={v}/>
+        <Player ref={ref} poster={props.poster}>
+          <source src={props.vedioUrl} type='video/mp4'/>
         </Player>
           <DownLoadWrap width="0 0 1px 0">
             <div className="download">
@@ -49,12 +49,14 @@ const Type5 = function(props){
                 props.videoList.map((value,index)=>{
                   // console.log(this.props.location.state.plid,value.plid)
                   return(
-                    <li key={value.mid} className={props.mid === value.mid ? 'active-info':null}>
+                    <InfoWrap iii={index+1} key={value.mid}>
+                    <div key={value.mid} className={props.mid === value.mid ? 'active-info':null}>
                       <div className="info">
                         <p>{value.title}</p>
                         <span>{formatPlayTime(value.mLength,1)}</span>
                       </div>
-                    </li>
+                    </div>
+                    </InfoWrap>
                   )
                 })
               }

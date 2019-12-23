@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import NavHead from '@/navHead'
 import Type5 from './Type5'
 import Type4 from './Type4'
 import { get } from 'utils/http'
@@ -42,7 +41,7 @@ class DetailRoute extends Component{
             :!this.state.data
             ?''
             :<>
-              <NavHead></NavHead>
+              
               <DetailWrap>
                 <Type5
                   h={this.state.h}
@@ -53,6 +52,8 @@ class DetailRoute extends Component{
                   mid={this.props.location.state.mid}
                   recommendList = {this.state.recommendList}
                   onMyClick = {this.SeeMove}
+                  vedioUrl = {this.state.data.m3u8SdUrlOrign}
+                  poster = {`https://nimg.ws.126.net/?url=${encodeURIComponent(this.state.data.imgPath)}&thumbnail=100000x100000&quality=100&type=webp`}
                 ></Type5>
               </DetailWrap>
             </>

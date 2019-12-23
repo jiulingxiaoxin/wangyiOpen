@@ -12,9 +12,20 @@ line-height:.56rem;
 }
 
 .class-list{
-  height:177px;
+  max-height:177px;
   overflow: hidden;
-  li{
+  transition: height 2s;
+  
+  
+}
+.share{
+  height:25px;
+  margin-top:11px;
+}
+`)
+
+const InfoWrap = styled.li`
+li{
     position:relative;
     height:55px;
     background: #f1f1f1;
@@ -37,6 +48,9 @@ line-height:.56rem;
       p{
         font-size:14px;
         padding-top:8.5px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
       }
       span{
         font-size:11px;
@@ -44,7 +58,7 @@ line-height:.56rem;
         line-height:15px;
       }
       &:before{
-        content:'1';
+        content:'${props => props.iii}';
         display: block;
         position:absolute;
         left:-24px;
@@ -57,7 +71,7 @@ line-height:.56rem;
     background: #619e64;
     color:#fff;
     &:after{
-      content:'';
+      
       position:absolute;
       left:0;
       top:0;
@@ -66,18 +80,12 @@ line-height:.56rem;
     }
     .info{
       span{
-        color:#9b9b9b;
+        color:#286b36;
       }
       
     }  
   }
-  
-}
-.share{
-  height:25px;
-  margin-top:11px;
-}
-`)
+`
 
 const DetailWrap = styled.div`
 .vedio{
@@ -132,7 +140,7 @@ const ContentWrap = border(styled.div`
 /* position:relative; */
 padding:15px;
 /* height:${props => props.h}; */
-
+transition: height 2s;
 h2{
   font-size:.2rem;
   line-height:.26rem;
@@ -179,5 +187,6 @@ export {
   DownLoadWrap,
   CallAppWrap,
   ContentWrap,
-  SeeAllWrap
+  SeeAllWrap,
+  InfoWrap
 }

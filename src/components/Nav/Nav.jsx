@@ -39,7 +39,7 @@ class Nav extends PureComponent{
   }
   
   render(){
-    // console.log(this.props)
+     
     return (
       <NavWrap width="0 0 1px 0" style={this.props.isSticky ? {position:'fixed',left: 0,top: 0,zIndex: 10} : null }>
         <div className="nav-box" >

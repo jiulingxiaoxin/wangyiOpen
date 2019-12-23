@@ -25,14 +25,7 @@ class VIPList extends Component {
     data:this.props.location.state.data,
     type:this.props.location.state.type
   }
-   getData=async ()=>{
 
-    
-    
-    /* this.setState({
-      data:res.data.data
-    }) */
-  }
 
   componentDidMount(){
     // this.getData()
@@ -46,6 +39,7 @@ render(){
     // this.props.CHANGETYPE()
     // console.log(this.state.type)
     let data = this.props.location.state.data
+    console.log(data)
     return (
     <>
       {
@@ -55,8 +49,8 @@ render(){
         <h2 className="title" >{data[0].title}</h2>
         <h3 className="payInfo">
           <span>
-            ￥{formatPrice(data[0].couponInfo.finalPrice)}
-            <span>￥{formatPrice(data[0].originPrice)}</span>
+            ￥{formatPrice(data[0].originPrice)}
+            <span>{ data[0].couponInfo ? '￥' + formatPrice(data[0].couponInfo.finalPrice) : null}</span>
           </span>
             {formatView(data[0].interestCount)}万人感兴趣
         </h3>

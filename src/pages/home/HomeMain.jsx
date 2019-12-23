@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react'
-import NavHead from '@/navHead'
-import Nav from '@/Nav/Nav'
 import Poster from '@/Poster'
 import { formatTime } from 'utils/myFuns'
 import { connect } from 'react-redux'
@@ -21,10 +19,7 @@ const mapdispatch = dispatch =>({
 })
 
 class HomMain extends PureComponent{
-  state={
-    data:[],
-    isSticky : false
-  }
+  
   // let isSticky = false
   componentDidMount(){
 
@@ -39,18 +34,7 @@ class HomMain extends PureComponent{
     this.props.loadData()
     }
 
-    scroll = ()=>{
-      if(window.pageYOffset > 49){
-        this.setState({
-          isSticky : true
-        })
-      }
-      else{
-        this.setState({
-          isSticky : false
-        })
-      } 
-    }
+    
     
     /* const { loadData } = props
     useEffect(()=>{
@@ -64,8 +48,7 @@ class HomMain extends PureComponent{
 
       return (
         <>
-          <NavHead isSticky={this.state.isSticky}></NavHead>
-          <Nav isSticky={this.state.isSticky}></Nav>
+          
                   
             {     
                 this.props.list.map((value)=>{

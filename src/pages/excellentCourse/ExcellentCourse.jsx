@@ -4,7 +4,8 @@ import open_logo from 'assets/images/open_logo2.png'
 import { Route,Switch } from 'react-router-dom'
 import VIPList from '@/VIPList'
 import { get } from 'utils/http'
-
+// import { CSSTransition } from 'react-transition-group'
+import 'assets/styles/animation.css'
 
 class ExcellentCourse extends Component{
   state={
@@ -27,6 +28,7 @@ class ExcellentCourse extends Component{
 
   handleClick=()=>{
     this.props.history.push({pathname:'/'})
+    
     // console.log( this.props.history)
   }
 
@@ -34,7 +36,8 @@ class ExcellentCourse extends Component{
     let res = await this.getData(this.state.spanlist[index].type)
     this.setState({
       isActive:index,
-      data:res.data.data
+      data:res.data.data,
+      type:index+1
     })
     this.props.history.push({
       pathname:this.props.match.url + this.state.spanlist[index].url,
@@ -44,6 +47,7 @@ class ExcellentCourse extends Component{
 
   async componentDidMount(){
     let res = await this.getData(2)
+    console.log(res)
     this.setState({
       data:res.data.data
     })
@@ -106,20 +110,54 @@ class ExcellentCourse extends Component{
         </HeadWrap>
         <Mainwrap>
           
-          <Switch>
-            <Route 
-              path={this.props.match.url + '/audio'}
-              component={VIPList}
-            />
+          
+            {/* <CSSTransition></CSSTransition> */}
+            {/* <CSSTransition
+              in={this.state.type === 2 ? true : false}
+              timeout={1000}
+              classNames={{
+                enter:'animated',
+                enterActive:'slideInLeft',
+                exit:'animated',
+                exitActive:'slideOutnRight'
+              }}
+              mountOnEnter
+              unMountOnExit
+            > */}
+            <Switch>
+              <Route 
+                path={this.props.match.url + '/audio'}
+                component={VIPList}
+                /* children={()=>{
+                  return <VIPList {...this.state}></VIPList>
+                }} */
+              />
+            {/* </CSSTransition> */}
             <Route 
               path={this.props.match.url}
               component={VIPList}
             />
-            <Route     
-              path={this.props.match.url + '/vedio'}
-              component={VIPList}
-            />
-          </Switch>
+            {/* <CSSTransition
+              in={this.state.type === 1 ? true : false}
+              timeout={1000}
+              classNames={{
+                enter:'animated',
+                enterActive:'sildeInRight',
+                exit:'animated',
+                exitActive:'sideOutLeft'
+              }}
+              mountOnEnter
+              unMountOnExit
+            > */}
+              <Route     
+                path={this.props.match.url + '/vedio'}
+                component={VIPList}
+                /* children={()=>{
+                  return <VIPList {...this.state}></VIPList>
+                }} */
+              />
+            {/* </CSSTransition> */}
+            </Switch>
         </Mainwrap>
       </>
     )

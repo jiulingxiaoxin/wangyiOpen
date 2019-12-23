@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import border from 'assets/styles/border'
 
 const ContainerWrap = styled.div`
 display:flex;
@@ -61,9 +62,10 @@ overflow: hidden;
       -webkit-animation: loading 1s infinite linear;
     }
 }
-li{
-  
-  padding:17px 12px;
+`
+
+const ItemWrap = border(styled.li`
+padding:17px 12px;
   
   a{
     display: flex;
@@ -123,10 +125,11 @@ li{
       }
     }
   }
-}
-`
+`)
+
 export {
   ListWrap,
   ContainerWrap,
-  LoadingWrap
+  LoadingWrap,
+  ItemWrap
 }

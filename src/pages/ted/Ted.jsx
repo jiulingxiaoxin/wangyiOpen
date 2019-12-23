@@ -1,20 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CommonList from '@/CommonList'
 import { ContainerWrap } from 'styles/CommonList'
 import { Route } from 'react-router-dom'
 
-class Attitude extends Component{
-  render(){
+const Ted = function(){
+
     return (
       <ContainerWrap>
-      
         <Route
-          path="/attitude"
+          path="/ted"
           component={CommonList}
         />
       </ContainerWrap>
     )
-  }
 }
 
-export default Attitude
+export default Ted

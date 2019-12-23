@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 import NavHead from '@/navHead'
 import Nav from '@/Nav/Nav'
 
-const International = function(props){
+const Light = function(props){
   
   let MyNav = useCallback(<Nav></Nav>,[])
 
@@ -14,7 +14,7 @@ const International = function(props){
       <NavHead></NavHead>
         {MyNav}
         <Route
-          path="/international"
+          path="/light"
           component={CommonList}
         />
       </ContainerWrap>
@@ -22,4 +22,4 @@ const International = function(props){
   
 }
 
-export default International
+export default Light

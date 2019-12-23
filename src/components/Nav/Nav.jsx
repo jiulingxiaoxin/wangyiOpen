@@ -1,12 +1,49 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { NavWrap } from 'styles/styleOpen'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
+import BScroll from 'better-scroll'
+import { READYCHANGEPOS } from './action_types'
+import { connect } from 'react-redux'
 
-class Nav extends Component{
+const mapState = state =>{
+  return {
+    posX : state.posX
+  }
+}
+
+const mapdispatch = dispatch =>({
+  rememberPos(){
+    dispatch({
+      type:READYCHANGEPOS
+    })
+  }
+})
+
+@connect(mapState,mapdispatch)
+class Nav extends PureComponent{
+  state = {
+    bscroll:null
+  }
+  componentDidMount(){
+    
+    this.setState({
+      bscroll : new BScroll('.nav-box',{
+        click:true,
+        scrollX:true
+      })
+    })  
+  }
+
+  componentWillUnmount(){
+    console.log(this.state.bscroll.x)
+  }
+  
   render(){
+    // console.log(this.props)
     return (
-      <NavWrap width="0 0 1px 0">
-        <div className="nav-box">
+      <NavWrap width="0 0 1px 0" style={this.props.isSticky ? {position:'fixed',left: 0,top: 0,zIndex: 10} : null }>
+        <div className="nav-box" >
+            <div>
             <NavLink 
               exact
               to={{pathname:'/'}}
@@ -56,6 +93,9 @@ class Nav extends Component{
               to={{pathname: '/attitude'}}
               activeClassName="active"
             >态度公开课</NavLink>
+            
+                
+            </div>
           
         </div>
         <span className="iconfont">&#xe641;</span>
@@ -65,4 +105,4 @@ class Nav extends Component{
   }
 }
 
-export default Nav
+export default withRouter(Nav)

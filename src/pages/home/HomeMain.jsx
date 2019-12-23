@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { HomeMainWrap } from 'styles/styleOpen'
+import React, { PureComponent } from 'react'
 import NavHead from '@/navHead'
-import Nav from '@/Nav'
-import { formatView , formatTime } from 'utils/myFuns'
+import Nav from '@/Nav/Nav'
+import Poster from '@/Poster'
+import { formatTime } from 'utils/myFuns'
 import { connect } from 'react-redux'
 import { GETLIST } from './action_types'
 
 const mapState = state =>{
   return {
-    list:state.home.list
+    list:state.getIn(['home','list'])
   }
 }
 
@@ -20,11 +20,12 @@ const mapdispatch = dispatch =>({
   }
 })
 
-class HomMain extends Component {
+class HomMain extends PureComponent{
   state={
-    data:[]
+    data:[],
+    isSticky : false
   }
-
+  // let isSticky = false
   componentDidMount(){
 
      //触发了mapdispatch的loadData,派发了action
@@ -34,52 +35,55 @@ class HomMain extends Component {
     // this.setState({
     //   data:this.props.list.data.data
     // })
-    
+    window.onscroll = this.scroll
     this.props.loadData()
-  }
+    }
 
-  render() {
-    let time
-    let view = 0
-    console.log(this.props.list)
-    return (
-      <>
-        <NavHead></NavHead>
-        <Nav></Nav>
-        <HomeMainWrap>
+    scroll = ()=>{
+      if(window.pageYOffset > 49){
+        this.setState({
+          isSticky : true
+        })
+      }
+      else{
+        this.setState({
+          isSticky : false
+        })
+      } 
+    }
+    
+    /* const { loadData } = props
+    useEffect(()=>{
+      loadData()
+      
+    },[loadData])
+ */
+    
+
+    render(){
+
+      return (
+        <>
+          <NavHead isSticky={this.state.isSticky}></NavHead>
+          <Nav isSticky={this.state.isSticky}></Nav>
+                  
+            {     
+                this.props.list.map((value)=>{
+                return (
+                  <div key={value.subId}>
+                    <Poster img={value.image} quantity={value.quantity} viewCount={value.viewCount}>
+                      <h3>{formatTime(value.publishTime)}</h3>
+                      <h4>{value.contentTitle}</h4>
+                      <h5>{value.contentDesc}</h5>
+                    </Poster>
+                  </div>
+                )
+            })
+            }
           
-          {
-            
-            this.props.list.map((value,index)=>{
-              time = formatTime(value.publishTime)
-              view = formatView(value.viewCount)
-              return (
-                <div key={value.subId}>
-                  <div className="home-main-wrap">
-                    <img src={value.image} alt="" />
-                    <div className="home-vedio-time">
-                      <span>{value.quantity}</span>
-                    </div>
-                  </div>
-                  <div className="summarize" width="0 0 1px 0" color="#000">
-                    <h3>{time}</h3>
-                    <h4>{value.contentTitle}</h4>
-                    <h5>{value.contentDesc}</h5>
-                    <div className="share-wrap">
-                      {view}人观看<span style={{fontFamily:'iconfont',fontSize:'.25rem',color:'#4a4a4a'}}>&#xe637;</span>
-                    </div>
-                  </div>
-                </div>
-              )
-            
-          })
-          }
-        </HomeMainWrap>
-      </>
-    )
-  }
-
-  
+        </>
+      ) 
+    }
 }
 
 export default connect(mapState,mapdispatch)(HomMain)

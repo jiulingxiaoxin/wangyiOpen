@@ -1,12 +1,11 @@
 import React , { Component } from 'react'
-import open_logo from 'assets/images/open_logo2.png'
 import { READYCHANGETYPE} from 'pages/excellentCourse/action_types'
 import { connect } from 'react-redux'
 import { formatPrice , formatView } from 'utils/myFuns'
 
 const mapState = state =>{
   return {
-    list:state.exce.list
+    list:state.getIn(['exce','list'])
   }
 }
 

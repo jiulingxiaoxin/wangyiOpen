@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import border from 'assets/styles/border'
 
 const HeadWrap = styled.div`
+  flex-shrink:0;
   padding:0 .1rem;
   display:flex;
   justify-content: space-between;
@@ -16,7 +17,7 @@ const HeadWrap = styled.div`
 `
 
 const NavWrap = border(styled.div`
-  padding: 0 0.05rem;
+  flex-shrink:0;
   height:.44rem;
   width:100%;
   display:flex;
@@ -25,18 +26,22 @@ const NavWrap = border(styled.div`
   background:#fff;
   .nav-box{
     width:100%;
-    overflow-x:scroll;
-    display: flex;
-    align-items:center;
-    a{
-      display:inline-block;
-      height:.17rem;
-      padding: 0 .11rem;
-      line-height:.17rem;
-      font-size:.16rem;
-      color:#555;
-      text-align:center;
-      white-space:nowrap;
+    >div{
+      overflow-x:scroll;
+      display: flex;
+      align-items:center;
+      height:49px;
+      float:left;
+      a{
+        display:block;
+        height:.17rem;
+        padding: 0 .11rem;
+        line-height:.17rem;
+        font-size:.16rem;
+        color:#555;
+        text-align:center;
+        white-space:nowrap;
+      }
     }
   }
   span{
@@ -51,69 +56,9 @@ const NavWrap = border(styled.div`
   }   
 `)
 
-const HomeMainWrap = border(styled.div`
-.home-main-wrap{
-  position: relative;
-  img{
-    width:100%;
-    height:1.9rem;
-    background: #ddd;
-  }
-  .home-vedio-time{
-    position:absolute;
-    display: flex;
-    justify-content:flex-end;
-    right:0;bottom:15px;
-    width:95px;
-    height:20px;
-    padding:0 10px;
-    background: linear-gradient(262deg,rgba(0,0,0,.53),transparent 80%);
-    span{
-      color:#fff;
-      font-size:10px;
-      line-height:20px
-    }
-  }
-}
-.summarize{
-  background: #fff;
-  padding:.11rem .16rem;
-  color:#4a4a4a;
-  h3{
-    margin-bottom:.07rem;
-    font-size:.1rem;
-    line-height:.12rem;
-    color:#bababa;
-    font-weight: normal;
-  }
-  h4{
-    margin-bottom:.1rem;
-    line-height:.2rem;
-    font-size:.17rem;
-    font-weight: normal;
-  }
-  h5{
-    font-size:.13rem;
-    line-height:.16rem;
-    height:.32rem;
-    overflow: hidden;
-    font-weight: normal;
-  }
-  .share-wrap{
-    height:.25rem;
-    margin-top:.11rem;
-    display: flex;
-    justify-content: space-between;
-    font-size:.12rem;
-    color:#9b9b9b;
-    line-height:.25rem;
-    
-  }
-}
-`)
+
 
 export {
   HeadWrap,
-  NavWrap,
-  HomeMainWrap
+  NavWrap
 }

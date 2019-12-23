@@ -1,0 +1,1 @@
+export const READYCHANGEPOS  = 'nav/nav/ready_change_pos'

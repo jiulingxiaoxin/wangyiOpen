@@ -17,6 +17,7 @@ const LoadingWrap = styled.div`
 `
 
 const ListWrap = styled.ul`
+overflow: hidden;
 @keyframes loading {
   0%{
     transform:rotate(0deg)
@@ -62,7 +63,7 @@ const ListWrap = styled.ul`
 }
 li{
   
-  margin:17px 12px;
+  padding:17px 12px;
   
   a{
     display: flex;
@@ -71,6 +72,10 @@ li{
     width:100%;
     height:100%;
     color:0;
+    .one-img{
+      width:1.13rem;
+      height:.8rem;
+    }
     .img-box{
       width:1.13rem;
       height:.87rem;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import border from 'assets/styles/border'
 
 const ContainerWrap = border(styled.div`
-padding:0 15px;
+padding:${props=>props.padding} ;
 .class-show{
 height:.56rem;
 font-size:.17rem;
@@ -10,7 +10,10 @@ font-weight: normal;
 text-align: center;
 line-height:.56rem;
 }
+
 .class-list{
+  height:177px;
+  overflow: hidden;
   li{
     position:relative;
     height:55px;
@@ -18,7 +21,7 @@ line-height:.56rem;
     padding:0 40px 0 30px;
     display: flex;
     flex-direction:column;
-    
+    margin-bottom:6px;
     &:after{
       content:'';
       position:absolute;
@@ -50,6 +53,29 @@ line-height:.56rem;
       }
     }
   }
+  .active-info{
+    background: #619e64;
+    color:#fff;
+    &:after{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      border-top:38px solid #5c975f;
+      border-right:38px solid #609d62;  
+    }
+    .info{
+      span{
+        color:#9b9b9b;
+      }
+      
+    }  
+  }
+  
+}
+.share{
+  height:25px;
+  margin-top:11px;
 }
 `)
 
@@ -103,10 +129,10 @@ const CallAppWrap = border(styled.div`
 `)
 
 const ContentWrap = border(styled.div`
-position:relative;
+/* position:relative; */
 padding:15px;
-min-height:1.21rem;
-background: #fcf;
+/* height:${props => props.h}; */
+
 h2{
   font-size:.2rem;
   line-height:.26rem;
@@ -119,15 +145,17 @@ h3{
   font-weight:normal;
 }
 p{
+  height:${props => props.h || '.225rem'};
+  background: #f6f6f6;
   font-size:.13rem;
   line-height:.21rem;
+  overflow:hidden;
 }
 .see-move{
-  position:absolute;
-  left:0;bottom:0;
+  /* position:absolute;
+  left:0;bottom:0; */
   height:41px;
   width:100%;
-  background: #cff;
   font-family:iconfont;
   font-size:.2rem;
   line-height:41px;
@@ -136,11 +164,20 @@ p{
 }
 `)
 
+const SeeAllWrap = border(styled.div`
+height:32px;
+text-align: center;
+line-height:32px;
+font-size:14px;
+color: #357d4c;
+margin:.1rem 0;
+`)
 
 export {
   ContainerWrap,
   DetailWrap,
   DownLoadWrap,
   CallAppWrap,
-  ContentWrap
+  ContentWrap,
+  SeeAllWrap
 }

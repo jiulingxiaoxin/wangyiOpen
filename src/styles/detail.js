@@ -25,7 +25,7 @@ line-height:.56rem;
 `)
 
 const InfoWrap = styled.li`
-li{
+>div{
     position:relative;
     height:55px;
     background: #f1f1f1;

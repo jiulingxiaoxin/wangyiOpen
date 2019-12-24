@@ -20,6 +20,7 @@ class DetailRoute extends Component{
   }
 
   async componentDidMount(){
+    console.log(999)
     let res = await get({
       url:`/open/mob/movie/list.do?plid=${this.props.location.state.plid}`
     })
@@ -33,6 +34,7 @@ class DetailRoute extends Component{
   }
 
   render(){
+    console.log(111)
     return (
       <>    
           {

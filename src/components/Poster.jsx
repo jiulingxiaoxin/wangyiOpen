@@ -1,9 +1,21 @@
 import React from 'react'
 import { HomeMainWrap, SummarizeWrap } from 'styles/components'
+import { NavLink } from 'react-router-dom'
 const Poster = function(props){
-  let { img , quantity, viewCount } = props
+  let { img , quantity, viewCount ,mid, plid, type} = props
+
   return(
     <HomeMainWrap width="0 0 1px 0">
+      <NavLink
+        to = {{
+          pathname:`/detail?mid=${mid}&plid=${plid}&type=${type}`,
+          state:{
+            mid,
+            plid,
+            type
+          }
+        }}
+      >
       <div className="home-main-wrap">
         <img src={img} alt="" />
         <div className="home-vedio-time">
@@ -20,7 +32,7 @@ const Poster = function(props){
           {viewCount}人观看<span style={{fontFamily:'iconfont',fontSize:'.25rem',color:'#4a4a4a'}}>&#xe637;</span>
         </div>
       </div>
-      
+      </NavLink>
     </HomeMainWrap>
   )
 }

@@ -2,8 +2,8 @@ import styled from 'styled-components'
 // import border from 'assets/styles/border'
 
 const HeadWrap = styled.div`
-  position:sticky;
-  position: -webkit-sticky;
+  width:100%;
+  position:fixed;
   top: 0;
   z-index:999;
 header{
@@ -66,7 +66,7 @@ const Mainwrap = styled.div`
 padding: 0 .16rem;
 overflow:scroll;
 color:#333;
-
+margin-top:110px;
 img{
   height:1.93rem;
   width:100%;

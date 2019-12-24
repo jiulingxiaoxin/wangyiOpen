@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Poster from '@/Poster'
-import { formatTime } from 'utils/myFuns'
+import { formatTime , formatView } from 'utils/myFuns'
 import { connect } from 'react-redux'
 import { GETLIST } from './action_types'
 
@@ -54,7 +54,14 @@ class HomMain extends PureComponent{
                 this.props.list.map((value)=>{
                 return (
                   <div key={value.subId}>
-                    <Poster img={value.image} quantity={value.quantity} viewCount={value.viewCount}>
+                    <Poster 
+                      img={value.image} 
+                      quantity={value.quantity} 
+                      viewCount={formatView(value.viewCount)}
+                      mid ={value.rid}
+                      plid={value.plid}
+                      type={5}
+                      >
                       <h3>{formatTime(value.publishTime)}</h3>
                       <h4>{value.contentTitle}</h4>
                       <h5>{value.contentDesc}</h5>

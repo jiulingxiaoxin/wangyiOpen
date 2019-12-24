@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import { Route, Switch, withRouter } from 'react-router-dom'
 
@@ -21,7 +21,7 @@ import NavHead from '@/navHead'
 // import Ani from './Ani'
 
 
-class Layout extends Component{
+class Layout extends PureComponent{
   state={
     data:[],
     isSticky : false
@@ -40,9 +40,12 @@ class Layout extends Component{
     } 
   }
 
+  componentDidMount(){
+    window.onscroll = this.scroll
+  }
+
 
   render(){
-    console.log(this.props)
     let type
     let path = this.props.location.pathname
     if(path.indexOf('/excellentCourse') !== -1 || path.indexOf('/detail2') !== -1){

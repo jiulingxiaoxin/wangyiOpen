@@ -21,25 +21,23 @@ const mapdispatch = dispatch =>({
 
 @connect(mapState,mapdispatch)
 class Nav extends PureComponent{
-  state = {
-    bscroll:null
-  }
+  bscroll=null
   componentDidMount(){
     
-    this.setState({
-      bscroll : new BScroll('.nav-box',{
+    
+      this.bscroll = new BScroll('.nav-box',{
         click:true,
         scrollX:true
       })
-    })  
+     
   }
 
   componentWillUnmount(){
-    console.log(this.state.bscroll.x)
+    console.log(this.bscroll.x)
   }
   
   render(){
-     
+     console.log(this.props)
     return (
       <NavWrap width="0 0 1px 0" style={this.props.isSticky ? {position:'fixed',left: 0,top: 0,zIndex: 10} : null }>
         <div className="nav-box" >

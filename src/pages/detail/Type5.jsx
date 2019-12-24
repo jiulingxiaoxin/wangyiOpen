@@ -67,13 +67,18 @@ const Type5 = function(props){
           <ContainerWrap width="0 0 1px 0">
             <h3 className="class-show">相关推荐</h3>
             {
-              props.recommendList.map((value)=>{
+              props.recommendList.map((value,index)=>{
+                // console.log(value)
                 return(
                   <Poster 
                     img={value.imgUrl} 
                     quantity={formatPlayTime(value.quantity)} 
                     key={value.playId} 
                     viewCount={formatView(value.viewCount)}
+                    mid ={value.targetId}
+                    plid={value.playId}
+                    type={5}
+                    
                   >
                     <h4>{value.title}</h4>
                     <h5>{value.description}</h5>

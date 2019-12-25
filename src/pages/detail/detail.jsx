@@ -20,12 +20,11 @@ class DetailRoute extends Component{
   }
 
   async componentDidMount(){
-    console.log(999)
     let res = await get({
-      url:`/open/mob/movie/list.do?plid=${this.props.location.state.plid}`
+      url:`/open/mob/movie/list.do?plid=${this.props.match.params.plid}`
     })
     let res2 = await get({
-      url:`/open/mob/movie/recommend/list.do?targetId=${this.props.location.state.plid}`
+      url:`/open/mob/movie/recommend/list.do?targetId=${this.props.match.params.plid}`
     })
     this.setState({
       data:res.data.data,
@@ -34,11 +33,12 @@ class DetailRoute extends Component{
   }
 
   render(){
-    console.log(111)
+    console.log(this.props.location.pathname)
+    
     return (
       <>    
           {
-            this.props.location.state.type===4
+            this.props.match.params.type===4
             ?<Type4></Type4>
             :!this.state.data
             ?''
@@ -51,7 +51,7 @@ class DetailRoute extends Component{
                   tags={this.state.data.tags}
                   description={this.state.data.description}
                   videoList={this.state.data.videoList}
-                  mid={this.props.location.state.mid}
+                  mid={this.props.match.params.mid}
                   recommendList = {this.state.recommendList}
                   onMyClick = {this.SeeMove}
                   vedioUrl = {this.state.data.m3u8SdUrlOrign}

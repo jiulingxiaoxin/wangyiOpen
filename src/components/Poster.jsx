@@ -8,12 +8,7 @@ const Poster = function(props){
     <HomeMainWrap width="0 0 1px 0">
       <NavLink
         to = {{
-          pathname:`/detail?mid=${mid}&plid=${plid}&type=${type}`,
-          state:{
-            mid,
-            plid,
-            type
-          }
+          pathname:`/detail/${mid}/${plid}/${type}`,
         }}
       >
       <div className="home-main-wrap">

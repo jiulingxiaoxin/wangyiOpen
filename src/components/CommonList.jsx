@@ -79,7 +79,7 @@ class CommonList extends Component{
               <span className="loading" style={{fontFamily:'iconfont'}}>&#xe6a6;</span>
             </div>
             :this.state.list.map(value =>{
-              console.log(value)
+              // console.log(value)
               return(
                 <ItemWrap className="list-item" key={value.plid + _.random(0,999999)} width="0 0 1px 0">
                   {
@@ -98,7 +98,7 @@ class CommonList extends Component{
                     to={
                       
                       {
-                        pathname: "/detail",
+                        pathname: `/detail/${value.plid}/${value.rid}/${this.type}`,
                         state:{mid : value.rid,plid:value.plid,type:this.type}  
                       }
                     }

@@ -28,21 +28,32 @@ class Layout extends PureComponent{
   }
 
   scroll = ()=>{
-    if(window.pageYOffset > 49){
-      this.setState({
-        isSticky : true
-      })
+ 
+    if(!this.props.location.pathname.includes('detail')){
+     
+      if(window.pageYOffset > 49){
+        this.setState({
+          isSticky : true
+        })
+      }
+      else{
+        this.setState({
+          isSticky : false
+        })
+      } 
     }
-    else{
-      this.setState({
-        isSticky : false
-      })
-    } 
   }
 
   componentDidMount(){
+    console.log(666)
     window.onscroll = this.scroll
+    console.log(this.props.location.pathname)
   }
+
+  /* componentDidUpdate(){
+    window.onscroll = this.scroll
+    console.log(999)
+  } */
 
 
   render(){
@@ -74,7 +85,8 @@ class Layout extends PureComponent{
             component={HomeMain}
           />
           <Route 
-            path="/detail"
+            key={this.props.location.pathname}
+            path="/detail/:mid/:plid/:type"
             component={Detail}
           />
           <Route

@@ -3,23 +3,23 @@ import React, { PureComponent } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 import { HomeMain } from './index'
-import International from 'pages/international/International'
+// import International from 'pages/international/International'
 import ExcellentCourse from 'pages/excellentCourse/ExcellentCourse'
 import Detail from 'pages/detail/detail'
 import Detail2 from 'pages/detail/detail2'
-import Inland from 'pages/inland/Inland'
-import Speach from 'pages/speach/Speach'
-import KehanSchool from 'pages/kehanSchool/KehanSchool'
-import Light from 'pages/light/Light'
-import FunClass from 'pages/funClass/FunClass'
-import ChangeForYou from 'pages/changeForYou/ChangeForYou'
-import Share from 'pages/share/Share'
-import Attitude from 'pages/attitude/Attitude'
-import Ted from 'pages/ted/Ted'
+// import Inland from 'pages/inland/Inland'
+// import Speach from 'pages/speach/Speach'
+// import KehanSchool from 'pages/kehanSchool/KehanSchool'
+// import Light from 'pages/light/Light'
+// import FunClass from 'pages/funClass/FunClass'
+// import ChangeForYou from 'pages/changeForYou/ChangeForYou'
+// import Share from 'pages/share/Share'
+// import Attitude from 'pages/attitude/Attitude'
+// import Ted from 'pages/ted/Ted'
 import Nav from '@/Nav/Nav'
 import NavHead from '@/navHead'
 // import Ani from './Ani'
-
+import CommonList from '@/CommonList'
 
 class Layout extends PureComponent{
   state={
@@ -48,13 +48,18 @@ class Layout extends PureComponent{
     console.log(666)
     window.onscroll = this.scroll
     console.log(this.props.location.pathname)
+    this.props.history.listen((router)=>{
+      this.setState({
+        isSticky:false
+      })
+    })
   }
 
   /* componentDidUpdate(){
     window.onscroll = this.scroll
     console.log(999)
   } */
-
+  
 
   render(){
     let type
@@ -74,15 +79,14 @@ class Layout extends PureComponent{
           : <>
             <NavHead isSticky={this.state.isSticky}></NavHead>
             <Nav isSticky={this.state.isSticky}></Nav>
-          </>
-          
-          
+          </>    
         }
-        <Switch>
+        
           <Route 
             exact
             path="/"
             component={HomeMain}
+            
           />
           <Route 
             key={this.props.location.pathname}
@@ -95,49 +99,49 @@ class Layout extends PureComponent{
           />
           <Route    
             path="/international"
-            component={International}
+            component={CommonList}
           />
           <Route
-            path="/Inland"
-            component={Inland}
+            path="/inland"
+            component={CommonList}
           />
           <Route
-            path="/Ted"
-            component={Ted}
+            path="/ted"
+            component={CommonList}
           />
           <Route
             path="/speach"
-            component={Speach}
+            component={CommonList}
           />
           <Route
             path="/funClass"
-            component={FunClass}
+            component={CommonList}
           />
-        </Switch>
-        <Route
-            path="/excellentCourse"
-            component={ExcellentCourse}
-        />
-        <Route
-          path="/kehanSchool"
-          component={KehanSchool}
-        />
-        <Route
-          path="/light"
-          component={Light}
-        />
-        <Route
-          path="/changeForYou"
-          component={ChangeForYou}
-        />
-        <Route
-          path="/share"
-          component={Share}
-        />
-        <Route
-          path="/attitude"
-          component={Attitude}
-        />
+          <Route
+              path="/excellentCourse"
+              component={ExcellentCourse}
+          />
+          <Route
+            path="/kehanSchool"
+            component={CommonList}
+          />
+          <Route
+            path="/light"
+            component={CommonList}
+          />
+          <Route
+            path="/changeForYou"
+            component={CommonList}
+          />
+          <Route
+            path="/share"
+            component={CommonList}
+          />
+          <Route
+            path="/attitude"
+            component={CommonList}
+          />
+        
       </>
     )
   }

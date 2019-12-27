@@ -10,6 +10,7 @@ class DetailRoute extends Component{
     data:null,
     recommendList:null,
     h:'.255rem',
+    path:null
     // plid:this.props.location.hash.substr(1,)
   }
 
@@ -20,6 +21,14 @@ class DetailRoute extends Component{
   }
 
   async componentDidMount(){
+    let re = /detail\/(([a-z]|[A-Z]|[0-9])*)\//g
+    let path
+     this.props.history.location.pathname.replace(re,($0,$1)=>{
+      this.setState({
+        path:$1
+      })
+    })
+    console.log(path)
     let res = await get({
       url:`/open/mob/movie/list.do?plid=${this.props.match.params.plid}`
     })
@@ -30,10 +39,11 @@ class DetailRoute extends Component{
       data:res.data.data,
       recommendList:res2.data.data
     })
+    
   }
 
   render(){
-    console.log(this.props.location.pathname)
+    console.log(this.state.data)
     
     return (
       <>    
@@ -52,9 +62,11 @@ class DetailRoute extends Component{
                   description={this.state.data.description}
                   videoList={this.state.data.videoList}
                   mid={this.props.match.params.mid}
+                  rid={this.state.path}
+                  plid={this.props.match.params.plid}
                   recommendList = {this.state.recommendList}
                   onMyClick = {this.SeeMove}
-                  vedioUrl = {this.state.data.m3u8SdUrlOrign}
+                  vedioUrl = {this.state.data.videoList[0].m3u8SdUrlOrign}
                   poster = {`https://nimg.ws.126.net/?url=${encodeURIComponent(this.state.data.imgPath)}&thumbnail=100000x100000&quality=100&type=webp`}
                 ></Type5>
               </DetailWrap>

@@ -3,10 +3,12 @@ import Poster from '@/Poster'
 import { formatPlayTime, formatView } from 'utils/myFuns'
 import { ContainerWrap, DownLoadWrap, CallAppWrap, ContentWrap, SeeAllWrap, InfoWrap} from 'styles/detail'
 import { Player } from 'video-react';
+import { withRouter } from 'react-router-dom'
 // import v from 'assets/1.mp4'
 
 const Type5 = function(props){
   const ref = React.createRef()
+  // console.log(history)
   return(
     <div>
         <Player ref={ref} poster={props.poster}>
@@ -48,9 +50,10 @@ const Type5 = function(props){
               {
                 props.videoList.map((value,index)=>{
                   // console.log(this.props.location.state.plid,value.plid)
+                  console.log(props.rid)
                   return(
                     <InfoWrap iii={index+1} key={value.mid}>
-                    <div key={value.mid} className={props.mid === value.mid ? 'active-info':null}>
+                    <div key={value.mid} className={props.rid === value.mid ? 'active-info':null}>
                       <div className="info">
                         <p>{value.title}</p>
                         <span>{formatPlayTime(value.mLength,1)}</span>
@@ -68,7 +71,7 @@ const Type5 = function(props){
             <h3 className="class-show">相关推荐</h3>
             {
               props.recommendList.map((value,index)=>{
-                // console.log(value)
+                console.log(value)
                 return(
                   <Poster 
                     img={value.imgUrl} 
@@ -78,7 +81,7 @@ const Type5 = function(props){
                     mid ={value.targetId}
                     plid={value.playId}
                     type={5}
-                    
+                    subscribeContentId ={value.playId} 
                   >
                     <h4>{value.title}</h4>
                     <h5>{value.description}</h5>
@@ -90,4 +93,4 @@ const Type5 = function(props){
     </div>
   )
 }
-export default Type5
+export default withRouter(Type5)

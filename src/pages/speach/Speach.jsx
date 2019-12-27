@@ -1,5 +1,5 @@
 import React from 'react'
-import CommonList from '@/CommonList'
+
 import { ContainerWrap } from 'styles/CommonList'
 import { Route } from 'react-router-dom'
 // import NavHead from '@/navHead'

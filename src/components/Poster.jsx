@@ -2,13 +2,14 @@ import React from 'react'
 import { HomeMainWrap, SummarizeWrap } from 'styles/components'
 import { NavLink } from 'react-router-dom'
 const Poster = function(props){
-  let { img , quantity, viewCount ,mid, plid, type} = props
-
+  let { img , quantity, viewCount ,subscribeContentId, plid, type} = props
+  console.log(subscribeContentId)
   return(
     <HomeMainWrap width="0 0 1px 0">
       <NavLink
         to = {{
-          pathname:`/detail/${mid}/${plid}/${type}`,
+          pathname:`/detail/${subscribeContentId}/${plid}/${type}`,
+          state:{mid:subscribeContentId}
         }}
       >
       <div className="home-main-wrap">

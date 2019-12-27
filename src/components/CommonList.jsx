@@ -43,6 +43,7 @@ class CommonList extends Component{
   }
 
   async componentDidMount(){ 
+    console.log(this.props.location.pathname)
     let result = await get({
       url:`/open/mob/movie/classify/playlist.do?id=${this.id}&type=${this.type}&cursor=0&pagesize=10`
     })
@@ -60,6 +61,7 @@ class CommonList extends Component{
       bounce:false
     })
     this.bscroll.on('pullingUp' , _.debounce(this.scroll),500)
+    console.log(this.bscroll)
   }
 
   componentDidUpdate(){
@@ -68,10 +70,13 @@ class CommonList extends Component{
       this.bscroll.finishPullUp()
     },0) 
   }
-
+  componentWillUnmount(){
+    this.bscroll = null
+  }
   render(){
+    
     return (
-      <div style={{flew:1,overflow:'hidden'}}  className="scrollbox">
+      <div style={{height:'100%',overflow:'hidden'}}  className="scrollbox">
         <ListWrap>
           {
             !this.state.list.length

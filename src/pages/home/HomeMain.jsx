@@ -45,22 +45,24 @@ class HomMain extends PureComponent{
     
 
     render(){
-
+      console.log(this.props.list)
       return (
         <>
           
                   
             {     
                 this.props.list.map((value)=>{
+                  console.log(value)
                 return (
                   <div key={value.subId}>
                     <Poster 
                       img={value.image} 
                       quantity={value.quantity} 
                       viewCount={formatView(value.viewCount)}
-                      mid ={value.rid}
+                      subscribeContentId ={value.subscribeContentId}                                                                               
                       plid={value.plid}
                       type={5}
+
                       >
                       <h3>{formatTime(value.publishTime)}</h3>
                       <h4>{value.contentTitle}</h4>
